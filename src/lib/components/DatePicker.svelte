@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { onMount, createEventDispatcher } from 'svelte';
-  import { clickOutside } from '../../utils/clickOutside';
+  import { onMount, onDestroy, createEventDispatcher } from 'svelte';
   import type { PredefinedDateOption, DateRange } from '../../types/datePicker.ts';
-
+  
+  
   // Props using $props() rune
   interface Props {
     initialStartDate?: string;
@@ -23,6 +23,7 @@
   let selectedOption = $state<PredefinedDateOption | null>(null);
   let calendarInstance: any = null;
   let calendarElement: HTMLElement;
+  let containerElement: HTMLElement;
 
   // Event dispatcher
   const dispatch = createEventDispatcher<{
@@ -50,9 +51,20 @@
     { key: 'last3months' as const, label: 'Last 3 Months' }
   ];
 
-  onMount(() => {
-  // Initialize flatpickr asynchronously
-  const initializeFlatpickr = async () => {
+  // Click outside handler
+  function handleClickOutside(event: MouseEvent) {
+    if (calendarVisible && containerElement && !containerElement.contains(event.target as Node)) {
+      calendarVisible = false;
+    }
+  }
+
+  // Initialize flatpickr
+  async function initializeFlatpickr() {
+    if (calendarInstance) {
+      calendarInstance.destroy();
+      calendarInstance = null;
+    }
+
     try {
       // Dynamically import flatpickr to avoid SSR issues
       const flatpickr = (await import('flatpickr')).default;
@@ -63,21 +75,29 @@
         return;
       }
       
-      // Wait a bit to ensure DOM is fully ready
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
-      // Initialize flatpickr
+      // Initialize flatpickr with proper configuration
       calendarInstance = flatpickr(calendarElement, {
         inline: true,
         mode: 'range',
         dateFormat: 'Y-m-d',
         showMonths: 1,
         enableTime: false,
+        static: true,
+        allowInput: false,
+        clickOpens: false,
         onChange: (selectedDates: Date[]) => {
           handleDateChange(selectedDates);
         },
-        onReady: () => {
+        onReady: (selectedDates: Date[], dateStr: string, instance: any) => {
           console.log('Flatpickr is ready');
+          // Ensure calendar is visible and properly positioned
+          const calendarEl = instance.calendarContainer;
+          if (calendarEl) {
+            calendarEl.style.display = 'block';
+            calendarEl.style.position = 'static';
+            calendarEl.style.visibility = 'visible';
+            calendarEl.style.opacity = '1';
+          }
         }
       });
       
@@ -95,19 +115,30 @@
     } catch (error) {
       console.error('Error initializing flatpickr:', error);
     }
-  };
-  
-  // Start the async initialization
-  initializeFlatpickr();
-  
-  // Return cleanup function (synchronous)
-  return () => {
+  }
+
+  onMount(() => {
+    // Add click outside listener
+    document.addEventListener('click', handleClickOutside);
+    
+    // Return cleanup function
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      if (calendarInstance) {
+        calendarInstance.destroy();
+        calendarInstance = null;
+      }
+    };
+  });
+
+  onDestroy(() => {
+    document.removeEventListener('click', handleClickOutside);
     if (calendarInstance) {
       calendarInstance.destroy();
       calendarInstance = null;
     }
-  };
-});
+  });
+
   function handleDateChange(selectedDates: Date[]): void {
     if (selectedDates.length === 2) {
       startDate = formatDate(selectedDates[0]);
@@ -163,8 +194,15 @@
     }
   }
 
-  function toggleCalendar(): void {
+  async function toggleCalendar(): Promise<void> {
     calendarVisible = !calendarVisible;
+    
+    // Initialize flatpickr when calendar becomes visible
+    if (calendarVisible) {
+      // Small delay to ensure DOM is updated
+      await new Promise(resolve => setTimeout(resolve, 50));
+      await initializeFlatpickr();
+    }
   }
 
   function clearAll(): void {
@@ -190,17 +228,13 @@
     }
     return placeholder;
   }
-
-  function handleClickOutside(): void {
-    calendarVisible = false;
-  }
 </script>
 
 <svelte:head>
   <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 </svelte:head>
 
-<div class="relative" use:clickOutside={handleClickOutside}>
+<div class="relative" bind:this={containerElement}>
   <!-- Date Picker Button -->
   <button
     onclick={toggleCalendar}
@@ -295,22 +329,18 @@
 </div>
 
 <style>
-  :global(.flatpickr-calendar) {
-    box-shadow: none;
-    border: none;
+  /* Custom styles to ensure flatpickr calendar displays properly */
+  :global(.flatpickr-calendar-container .flatpickr-calendar) {
+    display: block !important;
+    position: static !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    border: none !important;
   }
-
-  :global(.flatpickr-current-month .flatpickr-monthDropdown-months),
-  :global(.flatpickr-current-month input.cur-year) {
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-  }
-
-  :global(.filterButton) {
-    min-width: 150px;
-  }
-
-  .flatpickr-calendar-container {
-    min-height: 280px;
+  
+  :global(.flatpickr-calendar-container .flatpickr-calendar.inline) {
+    display: block !important;
+    position: static !important;
   }
 </style>

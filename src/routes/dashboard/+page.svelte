@@ -16,6 +16,16 @@
 
     import DatePicker from '$lib/components/DatePicker.svelte';
   import type { DateRange } from '../../types/datePicker';
+  import DropdownWithButton from "$lib/components/DropdownWithButton.svelte";
+  import ImageUpload from "$lib/components/ImageUpload.svelte";
+  import TableWithTab from "$lib/components/TableWithTab.svelte";
+
+   import TrafficChart from '$lib/components/AnalyticsChart.svelte';
+  import AnalyticsChart from "$lib/components/AnalyticsChart.svelte";
+
+  // Sample data arrays
+  const trafficData = [30, 40, 35, 50, 49, 60, 70, 91, 125, 100, 85, 75, 65];
+  const impressionsData = [15, 25, 20, 35, 40, 38, 50, 60, 45, 55, 42, 50, 30];
 
 
 
@@ -178,3 +188,12 @@
         on:clear={handleClear}
 
       />
+
+      <DropdownWithButton/>
+
+      <ImageUpload/>
+      <TableWithTab/>
+
+
+     <AnalyticsChart/>
+    
