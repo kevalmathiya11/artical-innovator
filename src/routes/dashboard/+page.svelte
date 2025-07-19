@@ -22,6 +22,8 @@
 
    import TrafficChart from '$lib/components/AnalyticsChart.svelte';
   import AnalyticsChart from "$lib/components/AnalyticsChart.svelte";
+  import AnalyticsChart2 from "$lib/components/AnalyticsChart2.svelte";
+  import Modal from "$lib/components/Modal.svelte";
 
   // Sample data arrays
   const trafficData = [30, 40, 35, 50, 49, 60, 70, 91, 125, 100, 85, 75, 65];
@@ -196,4 +198,8 @@
 
 
      <AnalyticsChart/>
+
+     <AnalyticsChart2/>
+
+     <Modal/>
     

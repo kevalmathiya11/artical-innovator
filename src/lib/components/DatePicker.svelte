@@ -271,9 +271,9 @@
                 <button
                   type="button"
                   onclick={() => setPredefinedDates(option.key)}
-                  class="w-full text-left cursor-pointer px-4 py-3 rounded-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 {selectedOption === option.key 
-                    ? 'bg-indigo-600/20 text-indigo-700' 
-                    : 'bg-indigo-600/10 text-gray-700 hover:bg-indigo-600/20'}"
+                  class="w-full text-left cursor-pointer px-4 py-3 rounded-xl transition-colors duration-200 focus:outline-none   {selectedOption === option.key 
+                    ? ' text-indigo-700' 
+                    : ' text-gray-700 hover:bg-indigo-600/20'}"
                 >
                   {option.label}
                 </button>
