@@ -339,8 +339,9 @@
     border: none !important;
   }
   
-  :global(.flatpickr-calendar-container .flatpickr-calendar.inline) {
+  /* :global(.flatpickr-calendar-container .flatpickr-calendar.inline) {
     display: block !important;
     position: static !important;
   }
+  */
 </style>
