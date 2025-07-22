@@ -28,7 +28,7 @@
 
   <!-- Routed Page Content -->
   <main 
-    class="flex-1 overflow-y-auto p-6 transition-all duration-300 ease-in-out mt-16"
+    class="flex-1 overflow-y-auto p-6 transition-all duration-300 ease-in-out mt-18"
     class:lg:ml-64={$isSidebarOpen}
     class:lg:ml-20={!$isSidebarOpen}
     class:max-lg:ml-0={true}>

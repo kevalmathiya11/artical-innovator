@@ -148,7 +148,7 @@
 <header
   class="flex items-center justify-between gap-1 sm:gap-6 py-3.5 px-6 border-b border-solid border-gray-200 fixed bg-white z-20 top-0 max-lg:left-0 lg:fixed right-0 transition-all duration-300"
   class:ml-0={!$isSidebarOpen}
-  class:ml-16={!$isSidebarOpen}
+  class:lg:ml-16={!$isSidebarOpen}
   class:lg:ml-[270px]={$isSidebarOpen}
   style="position: fixed; top: 0; left: 0; right: 0;"
 >
@@ -168,7 +168,7 @@
     </button>
 
     <!-- Welcome section -->
-    <div class="block">
+    <div class="block max-lg:pl-6">
       <h6
         class="text-sm sm:text-lg font-semibold text-gray-900 whitespace-nowrap mb-1.5"
       >
@@ -784,26 +784,12 @@
       aria-label="Toggle mobile menu"
       on:click={toggleMobileDropdown}
     >
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 18 18"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M2.25 5.25H15.75M2.25 9H15.75M2.25 12.75H15.75"
-          stroke="#374151"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
+    <img src="assets/images/ronald.png" alt="user avatar icon" />
     </button>
 
     {#if mobileDropdownOpen}
       <div
-        class="absolute right-4 top-16 z-10 w-80 rounded-2xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+        class="absolute right-4 top-16 z-10 w-80 rounded-2xl shadow-lg bg-white focus:outline-none"
         role="menu"
         aria-orientation="vertical"
         tabindex="-1"
@@ -832,18 +818,7 @@
               class="flex items-center w-full px-4 py-3 text-sm rounded-xl text-gray-700 hover:bg-indigo-600/15 text-left"
               role="menuitem"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18 6.00002C18.1392 6.00002 18.2784 4.99999 18.4176 5.00002L20.4176 5.00005C20.7839 5.00007 21.0784 5.29459 21.0784 5.66088C21.0784 6.02717 20.7839 6.32169 20.4176 6.32172L18.4176 6.32175C18.2784 6.32178 18.1392 6.32172 18 6.32175V6.00002Z"
-                  fill="#4F46E5"
-                />
-              </svg>
+            <img src="assets/images/fe.png" alt="user avatar icon" />
               <span class="ml-3">Workspace</span>
             </button>
 
@@ -851,18 +826,34 @@
               class="flex items-center w-full px-4 py-3 text-sm rounded-xl text-gray-700 hover:bg-indigo-600/15 text-left"
               role="menuitem"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18 6.00002C18.1392 6.00002 18.2784 4.99999 18.4176 5.00002L20.4176 5.00005C20.7839 5.00007 21.0784 5.29459 21.0784 5.66088C21.0784 6.02717 20.7839 6.32169 20.4176 6.32172L18.4176 6.32175C18.2784 6.32178 18.1392 6.32172 18 6.32175V6.00002Z"
-                  fill="#4F46E5"
-                />
-              </svg>
+            <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8.99023 4.89062V7.35113"
+              stroke="#4F46E5"
+              stroke-width="1.10833"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+            />
+            <path
+              d="M9.01472 1.6123C6.29561 1.6123 4.09372 3.81419 4.09372 6.5333V8.08497C4.09372 8.58742 3.88683 9.34108 3.62822 9.76964L2.68983 11.3361C2.1135 12.304 2.5125 13.3828 3.5765 13.7375C7.10838 14.9123 10.9284 14.9123 14.4603 13.7375C15.4578 13.405 15.8864 12.2375 15.347 11.3361L14.4086 9.76964C14.15 9.34108 13.9431 8.58003 13.9431 8.08497V6.5333C13.9357 3.82897 11.7191 1.6123 9.01472 1.6123Z"
+              stroke="#4F46E5"
+              stroke-width="1.10833"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+            />
+            <path
+              d="M11.4522 14.0381C11.4522 15.3903 10.3439 16.4986 8.99175 16.4986C8.31936 16.4986 7.69869 16.2178 7.25536 15.7745C6.81203 15.3311 6.53125 14.7105 6.53125 14.0381"
+              stroke="#4F46E5"
+              stroke-width="1.10833"
+              stroke-miterlimit="10"
+            />
+          </svg>
               <span class="ml-3">Notifications</span>
               <span
                 class="ml-auto bg-indigo-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
@@ -875,18 +866,36 @@
               class="flex items-center w-full px-4 py-3 text-sm rounded-xl text-gray-700 hover:bg-indigo-600/15 text-left"
               role="menuitem"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18 6.00002C18.1392 6.00002 18.2784 4.99999 18.4176 5.00002L20.4176 5.00005C20.7839 5.00007 21.0784 5.29459 21.0784 5.66088C21.0784 6.02717 20.7839 6.32169 20.4176 6.32172L18.4176 6.32175C18.2784 6.32178 18.1392 6.32172 18 6.32175V6.00002Z"
-                  fill="#4F46E5"
-                />
-              </svg>
+            <svg
+            width="34"
+            height="35"
+            viewBox="0 0 34 35"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect y="0.5" width="34" height="34" rx="17" fill="#4F46E5" />
+            <path
+              d="M17.0842 18.5854C17.0317 18.5779 16.9642 18.5779 16.9042 18.5854C15.5842 18.5404 14.5342 17.4604 14.5342 16.1329C14.5342 14.7754 15.6292 13.6729 16.9942 13.6729C18.3517 13.6729 19.4542 14.7754 19.4542 16.1329C19.4467 17.4604 18.4042 18.5404 17.0842 18.5854Z"
+              stroke="white"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M22.0495 23.5359C20.7145 24.7584 18.9445 25.5009 16.9945 25.5009C15.0445 25.5009 13.2745 24.7584 11.9395 23.5359C12.0145 22.8309 12.4645 22.1409 13.267 21.6009C15.322 20.2359 18.682 20.2359 20.722 21.6009C21.5245 22.1409 21.9745 22.8309 22.0495 23.5359Z"
+              stroke="white"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M16.9941 25.5005C21.1363 25.5005 24.4941 22.1426 24.4941 18.0005C24.4941 13.8584 21.1363 10.5005 16.9941 10.5005C12.852 10.5005 9.49414 13.8584 9.49414 18.0005C9.49414 22.1426 12.852 25.5005 16.9941 25.5005Z"
+              stroke="white"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
               <span class="ml-3">My Account</span>
             </button>
 
@@ -894,38 +903,88 @@
               class="flex items-center w-full px-4 py-3 text-sm rounded-xl text-gray-700 hover:bg-indigo-600/15 text-left"
               role="menuitem"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18 6.00002C18.1392 6.00002 18.2784 4.99999 18.4176 5.00002L20.4176 5.00005C20.7839 5.00007 21.0784 5.29459 21.0784 5.66088C21.0784 6.02717 20.7839 6.32169 20.4176 6.32172L18.4176 6.32175C18.2784 6.32178 18.1392 6.32172 18 6.32175V6.00002Z"
-                  fill="#4F46E5"
-                />
-              </svg>
-              <span class="ml-3">Settings</span>
+            <svg
+            width="34"
+            height="35"
+            viewBox="0 0 34 35"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect y="0.5" width="34" height="34" rx="17" fill="#F1F5F9" />
+            <path
+              d="M21.5015 14.3705C21.4565 14.363 21.404 14.363 21.359 14.3705C20.324 14.333 19.499 13.4855 19.499 12.4355C19.499 11.363 20.3615 10.5005 21.434 10.5005C22.5065 10.5005 23.369 11.3705 23.369 12.4355C23.3615 13.4855 22.5365 14.333 21.5015 14.3705Z"
+              stroke="#292D32"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M20.7286 19.8306C21.7561 20.0031 22.8886 19.8231 23.6836 19.2906C24.7411 18.5856 24.7411 17.4306 23.6836 16.7256C22.8811 16.1931 21.7336 16.0131 20.7061 16.1931"
+              stroke="#292D32"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.4779 14.37C12.5229 14.3625 12.5754 14.3625 12.6204 14.37C13.6554 14.3325 14.4804 13.485 14.4804 12.435C14.4804 11.3625 13.6179 10.5 12.5454 10.5C11.4729 10.5 10.6104 11.37 10.6104 12.435C10.6179 13.485 11.4429 14.3325 12.4779 14.37Z"
+              stroke="#292D32"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.2511 19.8301C12.2236 20.0026 11.0911 19.8226 10.2961 19.2901C9.23855 18.5851 9.23855 17.4301 10.2961 16.7251C11.0986 16.1926 12.2461 16.0126 13.2736 16.1926"
+              stroke="#292D32"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M17.0015 19.9725C16.9565 19.965 16.904 19.965 16.859 19.9725C15.824 19.935 14.999 19.0875 14.999 18.0375C14.999 16.965 15.8615 16.1025 16.934 16.1025C18.0065 16.1025 18.869 16.9725 18.869 18.0375C18.8615 19.0875 18.0365 19.9425 17.0015 19.9725Z"
+              stroke="#292D32"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M14.8195 22.335C13.762 23.04 13.762 24.195 14.8195 24.9C16.0195 25.7025 17.9845 25.7025 19.1845 24.9C20.242 24.195 20.242 23.04 19.1845 22.335C17.992 21.54 16.0195 21.54 14.8195 22.335Z"
+              stroke="#292D32"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+              <span class="ml-3">My Organization</span>
             </button>
 
             <button
               class="flex items-center w-full px-4 py-3 text-sm rounded-xl text-gray-700 hover:bg-indigo-600/15 text-left"
               role="menuitem"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18 6.00002C18.1392 6.00002 18.2784 4.99999 18.4176 5.00002L20.4176 5.00005C20.7839 5.00007 21.0784 5.29459 21.0784 5.66088C21.0784 6.02717 20.7839 6.32169 20.4176 6.32172L18.4176 6.32175C18.2784 6.32178 18.1392 6.32172 18 6.32175V6.00002Z"
-                  fill="#4F46E5"
-                />
-              </svg>
-              <span class="ml-3">Help & Support</span>
+            <svg
+            width="34"
+            height="35"
+            viewBox="0 0 34 35"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect y="0.5" width="34" height="34" rx="17" fill="#F1F5F9" />
+            <path
+              d="M24.501 18C24.501 22.14 21.141 25.5 17.001 25.5C12.861 25.5 9.50098 22.14 9.50098 18C9.50098 13.86 12.861 10.5 17.001 10.5C21.141 10.5 24.501 13.86 24.501 18Z"
+              stroke="#292D32"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M19.7836 20.3848L17.4586 18.9973C17.0536 18.7573 16.7236 18.1798 16.7236 17.7073V14.6323"
+              stroke="#292D32"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+              <span class="ml-3">Activity Log</span>
             </button>
 
             <hr class="my-3 h-px bg-gray-200 border-0" />
@@ -934,19 +993,30 @@
               class="flex items-center w-full px-4 py-3 text-sm rounded-xl text-red-600 hover:bg-red-50 text-left"
               role="menuitem"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18 6.00002C18.1392 6.00002 18.2784 4.99999 18.4176 5.00002L20.4176 5.00005C20.7839 5.00007 21.0784 5.29459 21.0784 5.66088C21.0784 6.02717 20.7839 6.32169 20.4176 6.32172L18.4176 6.32175C18.2784 6.32178 18.1392 6.32172 18 6.32175V6.00002Z"
-                  fill="#EF4444"
-                />
-              </svg>
-              <span class="ml-3">Sign Out</span>
+            <svg
+            width="34"
+            height="35"
+            viewBox="0 0 34 35"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect y="0.5" width="34" height="34" rx="17" fill="#EF4444" />
+            <path
+              d="M22.6667 18.5H12.6667M22.6667 18.5L19.3333 15.1667M22.6667 18.5L19.3333 21.8333"
+              stroke="white"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M15.3333 12.5V10.8333C15.3333 9.72824 16.2282 8.83334 17.3333 8.83334H22.6667C23.7718 8.83334 24.6667 9.72824 24.6667 10.8333V24.1667C24.6667 25.2718 23.7718 26.1667 22.6667 26.1667H17.3333C16.2282 26.1667 15.3333 25.2718 15.3333 24.1667V22.5"
+              stroke="white"
+              stroke-width="1.125"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+              <span class="ml-3">Log Out</span>
             </button>
           </div>
         </div>

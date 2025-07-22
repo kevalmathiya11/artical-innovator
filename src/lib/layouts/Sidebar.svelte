@@ -31,14 +31,19 @@
   onMount(() => {
     hydrated = true;
   });
+
+  // If you have a toggle function, define it here:
+  function toggleSidebarMenu() {
+    isSidebarOpen.update(v => !v);
+  }
 </script>
 
 {#if hydrated}
   
     <aside
       class="fixed inset-y-0 z-50 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-auto transition-all transform bg-white shadow-lg lg:z-[1000] max-sm:w-full lg:fixed lg:shadow-none"
-      class:-translate-x-ful={!$isSidebarOpen}
-      class:lg:translate-x-0={!$isSidebarOpen}
+      class:-translate-x-full={!$isSidebarOpen}
+      class:lg:translate-x-0={true}
       class:lg:w-20={!$isSidebarOpen}
       transition:fly={{ x: -256, duration: 300, opacity: 0.3 }}
     >
@@ -178,7 +183,7 @@
             class="w-6 h-6 rounded-full flex items-center justify-center bg-gray-100 transition-all duration-300"
             class:absolute={!$isSidebarOpen}
             class:-right-7={!$isSidebarOpen}
-            on:click={() => $isSidebarOpen = !$isSidebarOpen}          >
+            on:click={toggleSidebarMenu}          >
             <svg
               class="transition-all duration-300"
               class:rotate-180={!$isSidebarOpen}
@@ -212,7 +217,7 @@
           <li>
             <a
               href="/dashboard"
-              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-50"
+              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-100"
               class:justify-center={!$isSidebarOpen}
             >
               <span>
@@ -249,7 +254,7 @@
           <li>
             <a
               href="/team"
-              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-50"
+              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-100"
               class:justify-center={!$isSidebarOpen}
             >
               <span>
@@ -289,7 +294,7 @@
           <li>
             <a
               href="/domain"
-              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-50"
+              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-100"
               class:justify-center={!$isSidebarOpen}
             >
               <span>
@@ -333,7 +338,7 @@
           <li>
             <a
               href="/article"
-              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-50"
+              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-100"
               class:justify-center={!$isSidebarOpen}
             >
               <span>
@@ -373,7 +378,7 @@
           <li>
             <a
               href="/prompt"
-              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-50"
+          class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-100"
               class:justify-center={!$isSidebarOpen}
             >
               <span>
@@ -409,7 +414,7 @@
           <li>
             <a
               href="/workspace"
-              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-50"
+              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-100"
               class:justify-center={!$isSidebarOpen}
             >
               <span>
@@ -448,7 +453,7 @@
           <li>
             <a
               href="/ai-configuration"
-              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-50"
+              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-100"
               class:justify-center={!$isSidebarOpen}
             >
               <span>
@@ -527,7 +532,7 @@
           <li>
             <a
               href="/roles-permission"
-              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-50"
+              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-100"
               class:justify-center={!$isSidebarOpen}
             >
               <span>
@@ -575,7 +580,7 @@
           <li>
             <a
               href="/prompt-type-field"
-              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-50"
+              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-100"
               class:justify-center={!$isSidebarOpen}
             >
               <span>
@@ -611,7 +616,7 @@
           <li>
             <a
               href="/prompt-type"
-              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-50"
+              class="flex items-center gap-3 text-gray-600 text-sm font-medium py-2 px-3 rounded-lg group transition-all duration-300 hover:text-gray-900 hover:bg-gray-100"
               class:justify-center={!$isSidebarOpen}
             >
               <span>
@@ -654,7 +659,7 @@
     <li>
       <button
         on:click={handleSupport}
-        class="group flex items-center gap-3 text-gray-500 text-sm font-medium py-2 px-3 rounded-lg transition-all duration-500 hover:bg-gray-50 active:bg-gray-50 hover:text-gray-900 w-full"
+        class="group flex items-center gap-3 text-gray-500 text-sm font-medium py-2 px-3 rounded-lg transition-all duration-500 hover:bg-gray-100 cursor-pointer hover:text-gray-900 w-full"
         class:justify-center={!$isSidebarOpen}
       >
         <span>
@@ -681,7 +686,7 @@
     <li>
       <button
         on:click={handleLogout}
-        class="group flex items-center gap-3 text-red-600 text-sm font-medium py-2 px-3 rounded-lg transition-all duration-500 hover:bg-gray-50 active:bg-gray-50 hover:text-gray-900 w-full"
+        class="group flex items-center gap-3 text-red-600 text-sm font-medium py-2 px-3 rounded-lg transition-all duration-500 hover:bg-gray-100 cursor-pointer active:bg-gray-50 hover:text-gray-900 w-full"
         class:justify-center={!isSidebarOpen}
       >
         <span>
