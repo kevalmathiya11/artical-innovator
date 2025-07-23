@@ -146,11 +146,9 @@
 <svelte:window on:click={handleClickOutside} />
 
 <header
-  class="flex items-center justify-between gap-1 sm:gap-6 py-3.5 px-6 border-b border-solid border-gray-200 fixed bg-white z-20 top-0 max-lg:left-0 lg:fixed right-0 transition-all duration-300"
-  class:ml-0={!$isSidebarOpen}
-  class:lg:ml-16={!$isSidebarOpen}
-  class:lg:ml-[270px]={$isSidebarOpen}
-  style="position: fixed; top: 0; left: 0; right: 0;"
+  class="flex items-center justify-between gap-1 sm:gap-6 py-3.5 px-6 border-b border-solid border-gray-200 fixed z-20 top-0 max-lg:left-0 bg-white lg:fixed right-0 transition-all duration-300 ease-in-out"
+class:lg:w-[calc(100%-270px)]={$isSidebarOpen} 
+class:lg:w-[calc(100%-96px)]={!$isSidebarOpen}
 >
   <!-- Left section -->
   <div class="relative flex items-center">

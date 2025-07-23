@@ -41,11 +41,11 @@
 {#if hydrated}
   
     <aside
-      class="fixed inset-y-0 z-50 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-auto transition-all transform bg-white shadow-lg lg:z-[1000] max-sm:w-full lg:fixed lg:shadow-none"
-      class:-translate-x-full={!$isSidebarOpen}
-      class:lg:translate-x-0={true}
-      class:lg:w-20={!$isSidebarOpen}
-      transition:fly={{ x: -256, duration: 300, opacity: 0.3 }}
+    class="fixed inset-y-0 z-50 flex flex-col flex-shrink-0 max-h-screen overflow-auto transition-all duration-300 ease-in-out transform bg-white shadow-lg lg:z-[1000] max-sm:w-full lg:fixed lg:shadow-none"
+    class:w-64={$isSidebarOpen}
+    class:-translate-x-full={!$isSidebarOpen}
+    class:lg:translate-x-0={true}
+    class:lg:w-20={!$isSidebarOpen}
     >
       <div
         class="flex items-center justify-between flex-shrink-0 px-7"

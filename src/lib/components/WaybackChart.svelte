@@ -45,6 +45,10 @@
   let drag = false;
   let startIndex = 0;
 
+  // Store monthYear and mergedData globally for two-way sync
+  let monthYear: string[] = [];
+  let mergedData: number[] = [];
+
   onMount(() => {
     // Initialize with mock data if no data provided
     if (Object.keys(graphData.years).length === 0) {
@@ -105,7 +109,7 @@
     const data = graphData;
     const years = Object.keys(data.years);
     const labels: string[] = [];
-    const monthYear: string[] = [];
+    monthYear = [];
 
     // Create month/year labels for the x-axis
     for (const year in data.years) {
@@ -120,7 +124,7 @@
     }
 
     // Merge data for all years
-    const mergedData = years.reduce((acc : number[], year) => acc.concat(data.years[year]), []);
+    mergedData = years.reduce((acc : number[], year) => acc.concat(data.years[year]), []);
     let yearCycle = 12;
     let opacity = 0.5;
 
@@ -141,14 +145,14 @@
           data: mergedData,
           backgroundColor: backgroundColor,
           borderColor: backgroundColor,
-          borderWidth: 1
+          borderWidth: 1,
         }]
       },
       options: {
         responsive: false,
         scales: {
           x: {
-            grid: { display: true },
+            grid: { display: false },
             ticks: {
               stepSize: 12,
               autoSkip: false,
@@ -257,6 +261,38 @@
         console.log('Selected range:', startTime, 'to', endTime);
       }
     });
+  }
+
+  function updateOverlaySelectionFromInput() {
+    if (!chart || !overlayCanvas || !monthYear.length) return;
+    const selectionContext = overlayCanvas.getContext('2d');
+    if (!selectionContext || !chart.scales || !chart.scales.x || !chart.chartArea) return;
+
+    // Find indices for startTime and endTime
+    const startIdx = monthYear.findIndex(m => m === formatDateToMMYYYY(startTime));
+    const endIdx = monthYear.findIndex(m => m === formatDateToMMYYYY(endTime));
+    if (startIdx === -1 || endIdx === -1) return;
+
+    const left = chart.scales.x.getPixelForValue(Math.min(startIdx, endIdx));
+    const right = chart.scales.x.getPixelForValue(Math.max(startIdx, endIdx));
+    selectionRect.startX = left;
+    selectionRect.startY = chart.chartArea.top;
+    selectionRect.w = right - left;
+
+    selectionContext.globalAlpha = 0.5;
+    selectionContext.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+    selectionContext.fillStyle = 'rgba(104, 93, 216, 0.3)';
+    selectionContext.fillRect(
+      selectionRect.startX,
+      selectionRect.startY,
+      selectionRect.w,
+      chart.chartArea.bottom - chart.chartArea.top
+    );
+  }
+
+  // Reactively update overlay when input changes
+  $: if (chart && monthYear.length && mergedData.length && startTime && endTime) {
+    updateOverlaySelectionFromInput();
   }
 
   function formatDateToMMYYYY(dateStr: string): string {
